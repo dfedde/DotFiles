@@ -1,0 +1,51 @@
+set nocompatible
+filetype off
+syntax on
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+  
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+Bundle 'crooloose/nerdtree'
+Bundle 'msanders/snipmate.vim'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-fugitive'
+
+
+ filetype plugin indent on     " required!
+  "
+  " " Brief help
+  " " :BundleList          - list configured bundles
+  " " :BundleInstall(!)    - install(update) bundles
+  " " :BundleSearch(!) foo - search(or refresh cache first) for foo
+  " " :BundleClean(!)      - confirm(or auto-approve) removal of unused
+  "  bundles
+  " "
+  " " see :h vundle for more details or wiki for FAQ
+  " " NOTE: comments after Bundle command are not allowed..
+  "
+set hidden
+set hlsearch
+set ignorecase
+set smartcase
+set backspace=indent,eol,start
+set autoindent
+set nostartofline
+set ruler
+set laststatus=2
+set confirm
+set visualbell
+set t_vb=
+set mouse=a
+set cmdheight=2
+set number
+set notimeout ttimeout ttimeoutlen=200
+set pastetoggle=<F11>
+"set spell spelllang=en_us
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+map Y y$
+nnoremap <C-L> :nohl<CR><C-L>
