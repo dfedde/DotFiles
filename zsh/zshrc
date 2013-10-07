@@ -35,5 +35,9 @@ ZSH_THEME="duncan"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 # Customize to your needs...
+GEM_HOME=~/.gem/ruby/2.0.0
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH+=:/home/duncan/.gem/ruby/2.0.0/bin
+PATH+=:/usr/local/heroku/bin
