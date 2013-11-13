@@ -1,0 +1,14 @@
+[user]
+	email = duncan@fedde.us
+	name = duncan fedde
+[color]
+	ui = true
+[alias]
+  freq = !history | cut -c 8- | grep git | sort | uniq -c  | sort -n -r | head -n 5
+  c    = commit -m
+  a    = add
+  aa   = !git add -u && git add . && git status
+  cob  = checkout -b
+  up   = !git fetch origin && git rebase origin/master
+  ir   = !git rebase -i origin/master
+  done = !git fetch && git rebase origin/master && git checkout master && git merge @{-1} && rake && git push
