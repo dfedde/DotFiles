@@ -25,9 +25,25 @@ function git_prompt_info {
   fi
 
   if [[ -n $ref ]]; then
-    echo "%{$fg_bold[green]%}/${ref#refs/heads/}%{$reset_color%}$gitstatus$pairname"
+    echo "on%{$fg_bold[green]%} ${ref#refs/heads/}%{$reset_color%}$gitstatus$pairname"
+  fi
+}
+function prompt_char {
+  git branch >/dev/null 2>/dev/null && echo '±' && return
+  hg root >/dev/null 2>/dev/null && echo '☿' && return
+  echo '○'
+}
+function ruby_version(){
+  if which rvm-prompt &> /dev/null; then
+    rvm-prompt i v g
+  else
+    if which rbenv &> /dev/null; then
+      rbenv version | sed -e "s/ (set.*$//"
+    fi
   fi
 }
 
-PROMPT="╭─%{$fg[green]%}%n%{$reset_color%} at %{$fg[blue]%}%M%{$reset_color%} in %~ ${git_prompt_info} using jruby-1.7.9
-╰─>> "
+
+PROMPT='╭─%{$fg[green]%}%n%{$reset_color%} at %{$fg[blue]%}%M%{$reset_color%} in %~ $(git_prompt_info) using $(ruby_version)
+╰─$(prompt_char) '
+setopt promptsubst

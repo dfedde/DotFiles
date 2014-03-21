@@ -10,6 +10,11 @@ alias ri='ri -Tf ansi'
 alias be='bundle exec'
 alias bx='bundle exec'
 
-alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
 
 alias gentags='ctags . && rm .tags;mv tags .tags'
+
+alias cdp='cd ~/repos/the_path'
+alias gb='git branch'
+alias gc='git checkout'
+alias gs='git status'
+alias gg='git log --graph'

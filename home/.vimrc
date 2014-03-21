@@ -19,10 +19,12 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'nathanaelkane/vim-indent-guides' 
 Bundle 'Bogdanp/rbrepl.vim'
-Bundle 'Shougo/neocomplcache.vim'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'nelstrom/vim-textobj-rubyblock'
 Bundle 'kana/vim-textobj-user'
+Bundle 'kien/ctrlp.vim'
+Bundle 'tpope/vim-haml'
+Bundle 'godlygeek/tabular'
   "
   " " Brief help
   " " :BundleList          - list configured bundles
@@ -73,16 +75,21 @@ function! WinMove(key)
     endif
 endfunction
 
-"add new windows
-map <leader>h              :call WinMove('h')<cr>                                         
-map <leader>k              :call WinMove('k')<cr>                                          
-map <leader>l              :call WinMove('l')<cr>                                       
-map <leader>j              :call WinMove('j')<cr>
-"move threu windows
-map <leader>H              :wincmd H<cr>
-map <leader>K              :wincmd K<cr>
-map <leader>L              :wincmd L<cr>
-map <leader>J              :wincmd J<cr>
+" "add new windows
+" map <leader>h              :call WinMove('h')<cr>                                         
+" map <leader>k              :call WinMove('k')<cr>                                          
+" map <leader>l              :call WinMove('l')<cr>                                       
+" map <leader>j              :call WinMove('j')<cr>
+" Use ctrl-[hjkl] to select the active split!
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
+
+nmap <silent> <c-K> :call WinMove('k')<CR>
+nmap <silent> <c-J> :call WinMove('j')<CR>
+nmap <silent> <c-L> :call WinMove('l')<CR>
+nmap <silent> <c-H> :call WinMove('h')<CR>
 "use javascript higliting for javascript 
 autocmd BufNewFile,BufRead *.json set ft=javascript
 "adds the remove function
