@@ -90,6 +90,7 @@ nmap <silent> <c-K> :call WinMove('k')<CR>
 nmap <silent> <c-J> :call WinMove('j')<CR>
 nmap <silent> <c-L> :call WinMove('l')<CR>
 nmap <silent> <c-H> :call WinMove('h')<CR>
+nmap <leader>s :setlocal spell! spelllang= en_us<cr>
 "use javascript higliting for javascript 
 autocmd BufNewFile,BufRead *.json set ft=javascript
 "adds the remove function

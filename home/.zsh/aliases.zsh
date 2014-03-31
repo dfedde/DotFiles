@@ -13,8 +13,9 @@ alias bx='bundle exec'
 
 alias gentags='ctags . && rm .tags;mv tags .tags'
 
-alias cdp='cd ~/repos/the_path'
+alias thepath='cd ~/repos/the_path'
 alias gb='git branch'
 alias gc='git checkout'
 alias gs='git status'
 alias gg='git log --graph'
+alias cb='git checkout'
