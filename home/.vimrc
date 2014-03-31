@@ -25,6 +25,8 @@ Bundle 'kana/vim-textobj-user'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-haml'
 Bundle 'godlygeek/tabular'
+Bundle 'thoughtbot/vim-rspec'
+Bundle 'jgdavey/tslime.vim'
   "
   " " Brief help
   " " :BundleList          - list configured bundles
@@ -90,7 +92,7 @@ nmap <silent> <c-K> :call WinMove('k')<CR>
 nmap <silent> <c-J> :call WinMove('j')<CR>
 nmap <silent> <c-L> :call WinMove('l')<CR>
 nmap <silent> <c-H> :call WinMove('h')<CR>
-nmap <leader>s :setlocal spell! spelllang= en_us<cr>
+nmap <leader>s :setlocal spell! spelllang=en_us<cr>
 "use javascript higliting for javascript 
 autocmd BufNewFile,BufRead *.json set ft=javascript
 "adds the remove function
@@ -106,3 +108,11 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=darkgrey
 autocmd VimEnter,Colorscheme * :let indent_guides_start_level=2
 autocmd VimEnter,Colorscheme * :let indent_guides_guide_size=1
 
+
+"for rspec
+let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+" vim-rspec mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
