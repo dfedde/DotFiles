@@ -5,6 +5,7 @@ call vundle#rc()
 set nobackup
 set nowritebackup
 let mapleader='\'  
+
 " let Vundle manage Vundle
 " required! 
 Bundle 'gmarik/vundle'
@@ -30,6 +31,7 @@ Bundle 'godlygeek/tabular'
 Bundle 'thoughtbot/vim-rspec'
 
 
+
 "add a bunch more snipits for
 Bundle 'scrooloose/snipmate-snippets'
 "allow send command to tmux
@@ -43,19 +45,20 @@ Bundle 'rking/ag.vim'
 Bundle 'mileszs/ack.vim'
 
 Bundle 'tpope/vim-haml'
-  "
-  " " Brief help
-  " " :BundleList          - list configured bundles
-  " " :BundleInstall(!)    - install(update) bundles
-  " " :BundleSearch(!) foo - search(or refresh cache first) for foo
-  " " :BundleClean(!)      - confirm(or auto-approve) removal of unused
-  "  bundles
-  " "
-  " " see :h vundle for more details or wiki for FAQ
-  " " NOTE: comments after Bundle command are not allowed..
-  "
+
+
+"themes
+Bundle 'altercation/vim-colors-solarized.git'
+
+
+"set theme
+syntax enable
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
+
+
 set hidden
-set hlsearch
 set ignorecase
 set smartcase
 set backspace=indent,eol,start
@@ -66,7 +69,6 @@ set laststatus=2
 set confirm
 set visualbell
 set t_vb=
-set mouse=a
 set cmdheight=2
 set number
 set notimeout ttimeout ttimeoutlen=200
@@ -75,7 +77,9 @@ set spell spelllang=en_us
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-"turn on auto compeate by default
+set cursorline
+
+"turn on auto complete by default
 let g:neocomplcache_enable_at_startup = 1
 map Y y$
 nnoremap <C-L> :nohl<CR><C-L>
@@ -114,7 +118,6 @@ autocmd BufNewFile,BufRead *.json set ft=javascript
 "adds the remove function
 command! -complete=file -nargs=1 Remove :echo 'Remove: '.'<f-args>'.' '.(delete(<f-args>) == 0 ? 'SUCCEEDED' : 'FAILED')
 
-syntax on
 filetype plugin indent on     " required!
 
 "so that tab guids look better
