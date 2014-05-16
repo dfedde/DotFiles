@@ -2,6 +2,8 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
+set nobackup
+set nowritebackup
 let mapleader='\'  
 " let Vundle manage Vundle
 " required! 
@@ -26,7 +28,21 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-haml'
 Bundle 'godlygeek/tabular'
 Bundle 'thoughtbot/vim-rspec'
+
+
+"add a bunch more snipits for
+Bundle 'scrooloose/snipmate-snippets'
+"allow send command to tmux
 Bundle 'jgdavey/tslime.vim'
+
+Bundle '907th/vim-auto-save'
+
+"to be able to use ack/ag in vim
+Bundle 'rking/ag.vim'
+
+Bundle 'mileszs/ack.vim'
+
+Bundle 'tpope/vim-haml'
   "
   " " Brief help
   " " :BundleList          - list configured bundles
@@ -55,7 +71,7 @@ set cmdheight=2
 set number
 set notimeout ttimeout ttimeoutlen=200
 set pastetoggle=<F11>
-"set spell spelllang=en_us
+set spell spelllang=en_us
 set shiftwidth=2
 set softtabstop=2
 set expandtab
@@ -110,7 +126,7 @@ autocmd VimEnter,Colorscheme * :let indent_guides_guide_size=1
 
 
 "for rspec
-let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+let g:rspec_command = 'call Send_to_Tmux("clear; time zeus test {spec}\n")'
 " vim-rspec mappings
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
