@@ -1,60 +1,62 @@
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 set nobackup
 set nowritebackup
 let mapleader='\'
 
 " let Vundle manage Vundle
 " required! 
-Bundle 'gmarik/vundle'
-Bundle 'tpope/vim-surround'
-Bundle 'msanders/snipmate.vim'
-Bundle 'mattn/emmet-vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-rails'
-Bundle 'Raimondi/delimitMate'
-Bundle 'scrooloose/syntastic'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'pangloss/vim-javascript'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'Bogdanp/rbrepl.vim'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'nelstrom/vim-textobj-rubyblock'
-Bundle 'kana/vim-textobj-user'
-Bundle 'kien/ctrlp.vim'
-Bundle 'godlygeek/tabular'
-Bundle 'thoughtbot/vim-rspec'
-Bundle 'christoomey/vim-tmux-navigator'
+Plugin 'gmarik/vundle.vim'
+Plugin 'tpope/vim-surround'    
+Plugin 'msanders/snipmate.vim' 
+Plugin 'mattn/emmet-vim' 
+Plugin 'tpope/vim-fugitive'    
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-rails'  
+Plugin 'Raimondi/delimitMate'   
+Plugin 'scrooloose/syntastic'
+Plugin 'vim-ruby/vim-ruby' 
+Plugin 'pangloss/vim-javascript'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'nathanaelkane/vim-indent-guides' 
+Plugin 'Bogdanp/rbrepl.vim'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'kana/vim-textobj-user'
+Plugin 'kien/ctrlp.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'thoughtbot/vim-rspec'
 
 
 
 "add a bunch more snipits for
-Bundle 'scrooloose/snipmate-snippets'
+Plugin 'scrooloose/snipmate-snippets'
 "allow send command to tmux
-Bundle 'jgdavey/tslime.vim'
+Plugin 'jgdavey/tslime.vim'
 
-Bundle '907th/vim-auto-save'
+Plugin '907th/vim-auto-save'
 
 "to be able to use ack/ag in vim
-Bundle 'rking/ag.vim'
+Plugin 'rking/ag.vim'
 
-Bundle 'mileszs/ack.vim'
+Plugin 'mileszs/ack.vim'
 
-Bundle 'tpope/vim-haml'
+Plugin 'tpope/vim-haml'
 
 
 "themes
-Bundle 'altercation/vim-colors-solarized.git'
+Plugin 'altercation/vim-colors-solarized.git'
 
+" All of your Plugins must be added before the following line
+ call vundle#end()            " require
+ filetype plugin indent on    " required
 
 "set theme
 syntax enable
 set background=dark
-let g:solarized_termcolors=256
+"let g:solarized_termcolors=256
 colorscheme solarized
 
 
