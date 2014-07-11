@@ -137,7 +137,7 @@ set foldnestmax=2
 """"""""""""""""""""""""""""""""""""""""
 " added motions and maping
 """"""""""""""""""""""""""""""""""""""""
-inoremap  jk <esc> 
+inoremap  jk <esc>
 inoremap  <esc> <nop>
 
 noremap yy Y
