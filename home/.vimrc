@@ -140,6 +140,7 @@ set foldnestmax=2
 inoremap  jk <esc> 
 inoremap  <esc> <nop>
 
+noremap yy Y
 """"""""""""""""""""""""""""""""""""""""
 " custom abbrivation
 """"""""""""""""""""""""""""""""""""""""
