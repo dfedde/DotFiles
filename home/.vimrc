@@ -45,6 +45,7 @@ Plugin 'mileszs/ack.vim'
 
 Plugin 'tpope/vim-haml'
 
+Plugin 'christoomey/vim-tmux-navigator'
 
 "themes
 Plugin 'altercation/vim-colors-solarized.git'
@@ -145,8 +146,10 @@ noremap yy Y
 " custom abbrivation
 """"""""""""""""""""""""""""""""""""""""
 ab rtfm read the fine manual
-ab psb project_strategy_block 
-ab PSB ProjectStrategyBlock 
+ab psbl project_strategy_block
+ab PSBl ProjectStrategyBlock
+ab teh the
+
 
 
 
@@ -154,20 +157,6 @@ ab PSB ProjectStrategyBlock
 let g:neocomplcache_enable_at_startup = 1
 map Y y$
 
-function! WinMove(key) 
-    let t:curwin = winnr()
-    exec "wincmd ".a:key
-    if (t:curwin == winnr()) "we havent moved
-      if (match(a:key,'[jk]')) "were we going up/down
-        wincmd v
-      else 
-        wincmd s
-      endif
-      exec "wincmd ".a:key
-    endif
-endfunction
-
- "add new windows
 "use javascript higliting for javascript 
 autocmd BufNewFile,BufRead *.json set ft=javascript
 "adds the remove function
