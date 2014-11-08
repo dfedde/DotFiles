@@ -2,42 +2,56 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-set nobackup
-set nowritebackup
 let mapleader='\'
 
 " let Vundle manage Vundle
-" required! 
-Plugin 'gmarik/vundle.vim'
-Plugin 'tpope/vim-surround'    
-Plugin 'msanders/snipmate.vim' 
-Plugin 'mattn/emmet-vim' 
-Plugin 'tpope/vim-fugitive'    
+" required!
+Plugin 'gmarik/Vundle.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'msanders/snipmate.vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-rails'  
-Plugin 'Raimondi/delimitMate'   
+Plugin 'tpope/vim-rails'
+Plugin 'Raimondi/delimitMate'
 Plugin 'scrooloose/syntastic'
-Plugin 'vim-ruby/vim-ruby' 
+Plugin 'vim-ruby/vim-ruby'
 Plugin 'pangloss/vim-javascript'
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'nathanaelkane/vim-indent-guides' 
-Plugin 'Bogdanp/rbrepl.vim'
+Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'kana/vim-textobj-user'
-Plugin 'kien/ctrlp.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'thoughtbot/vim-rspec'
 
+"to work better with tmux
+Plugin 'sjl/vitality.vim'
 
+"Use tab for text compleation
+Plugin 'ervandew/supertab'
+
+"damn sexy status bar (also tabs)
+Plugin 'bling/vim-airline'
+
+Plugin 'dfedde/vim-arpeggio'
+
+Plugin 'noprompt/vim-yardoc'
 
 "add a bunch more snipits for
 Plugin 'scrooloose/snipmate-snippets'
+
 "allow send command to tmux
 Plugin 'jgdavey/tslime.vim'
 
 Plugin '907th/vim-auto-save'
 
+"For vim note taking
+Plugin 'xolox/vim-notes'
+Plugin 'xolox/vim-misc'
+
+" for vim easy motion allowing you to get any where on the page quickly
+Plugin 'Lokaltog/vim-easymotion'
 "to be able to use ack/ag in vim
 Plugin 'rking/ag.vim'
 
@@ -61,7 +75,7 @@ set background=dark
 colorscheme solarized
 
 
-set hidden
+set nohidden
 set ignorecase
 set smartcase
 set backspace=indent,eol,start
@@ -78,9 +92,9 @@ set cmdheight=2
 set number
 set notimeout ttimeout ttimeoutlen=200
 set pastetoggle=<F11>
-set shiftwidth=2
-set softtabstop=2
 set cursorline
+set relativenumber
+
 
 """"""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -89,6 +103,15 @@ set cursorline
 set nobackup
 set nowb
 set noswapfile
+" let vim take care of saving and loading for me
+set autoread
+set autowrite
+set autowriteall
+:au FocusLost * silent! wa
+
+" persistent-undo
+set undodir=~/.vim/undo
+set undofile
 
 """"""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -99,7 +122,7 @@ set expandtab
 " Be smart when using tabs ;)
 set smarttab
 
-" 1 tab == 4 spaces
+" 1 tab == 2 spaces
 set shiftwidth=2
 set tabstop=2
 
@@ -114,6 +137,10 @@ set wrap "Wrap lines
 """"""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""
+
+" spell checking is on by default
+setlocal spell!
+
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
@@ -141,6 +168,8 @@ set foldnestmax=2
 inoremap  jk <esc>
 inoremap  <esc> <nop>
 
+noremap ; :
+
 noremap yy Y
 """"""""""""""""""""""""""""""""""""""""
 " custom abbrivation
@@ -149,13 +178,38 @@ ab rtfm read the fine manual
 ab psbl project_strategy_block
 ab PSBl ProjectStrategyBlock
 ab teh the
+ab feild field
+ab clockin ⌚ in  
+ab clockout ⌚ out 
+
+""""""""""""""""""""""""""""""""""""""""
+" Note Taking settings
+""""""""""""""""""""""""""""""""""""""""
+let g:notes_directories = ['~/Documents/Notes']
+let g:notes_shadowdir   =  '~/Documents/shadow_dir'
 
 
+""""""""""""""""""""""""""""""""""""""""
+" Easy motion
+""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""""""""""""
+" Airline
+""""""""""""""""""""""""""""""""""""""""
+let g:airline_detect_whitespace = 0
+let g:airline_powerline_fonts=1
 
-"turn on auto complete by default
-let g:neocomplcache_enable_at_startup = 1
+""""""""""""""""""""""""""""""""""""""""
+" clipboard
+""""""""""""""""""""""""""""""""""""""""
+set clipboard=unnamedplus
+
 map Y y$
+
+""""""""""""""""""""""""""""""""""""""""
+" Syntastic
+""""""""""""""""""""""""""""""""""""""""
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 
 "use javascript higliting for javascript 
 autocmd BufNewFile,BufRead *.json set ft=javascript
@@ -178,10 +232,10 @@ highlight EOLWS ctermbg=red guibg=red
 "for rspec
 let g:rspec_command = 'call Send_to_Tmux("clear; time zeus test {spec}\n")'
 " vim-rspec mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
+" map <Leader>t :call RunCurrentSpecFile()<CR>
+" map <Leader>s :call RunNearestSpec()<CR>
+" map <Leader>l :call RunLastSpec()<CR>
+" map <Leader>a :call RunAllSpecs()<CR>
 
 function! Reload_firefox()
   write
@@ -189,4 +243,3 @@ function! Reload_firefox()
   redraw!
 endfunction
 
-map <leader>r :call Reload_firefox()<CR>

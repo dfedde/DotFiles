@@ -44,6 +44,7 @@ function ruby_version(){
 }
 
 
-PROMPT='╭─%{$fg[green]%}%n%{$reset_color%} at %{$fg[blue]%}%M%{$reset_color%} in %~ $(git_prompt_info) using $(ruby_version)
+PROMPT='╭─%{$fg[green]%}%n%{$reset_color%} at %{$fg[blue]%}%M%{$reset_color%} 
+├▶ in %~ $(git_prompt_info) using $(ruby_version)
 ╰─$(prompt_char) '
 setopt promptsubst
