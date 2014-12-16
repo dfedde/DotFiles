@@ -34,6 +34,7 @@ Plugin 'ervandew/supertab'
 "damn sexy status bar (also tabs)
 Plugin 'bling/vim-airline'
 
+" allows keycords for vim hotkeys
 Plugin 'dfedde/vim-arpeggio'
 
 Plugin 'noprompt/vim-yardoc'
@@ -44,22 +45,22 @@ Plugin 'scrooloose/snipmate-snippets'
 "allow send command to tmux
 Plugin 'jgdavey/tslime.vim'
 
+"use a singe keystorke to run test in most contexts
+Plugin 'jgdavey/vim-turbux'
+
 Plugin '907th/vim-auto-save'
 
 "For vim note taking
 Plugin 'xolox/vim-notes'
 Plugin 'xolox/vim-misc'
 
-" for vim easy motion allowing you to get any where on the page quickly
-Plugin 'Lokaltog/vim-easymotion'
-"to be able to use ack/ag in vim
-Plugin 'rking/ag.vim'
-
 Plugin 'mileszs/ack.vim'
 
 Plugin 'tpope/vim-haml'
 
 Plugin 'christoomey/vim-tmux-navigator'
+
+Plugin 'tpope/vim-unimpaired'
 
 "themes
 Plugin 'altercation/vim-colors-solarized.git'
@@ -76,7 +77,6 @@ colorscheme solarized
 
 
 set nohidden
-set ignorecase
 set smartcase
 set backspace=indent,eol,start
 set autoindent
@@ -111,7 +111,6 @@ set autowriteall
 
 " persistent-undo
 set undodir=~/.vim/undo
-set undofile
 
 """"""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -132,7 +131,6 @@ set tw=500
 
 set ai "Auto indent
 set si "Smart indent
-set wrap "Wrap lines
 
 """"""""""""""""""""""""""""""""""""""""""
 " => Spell checking
@@ -144,12 +142,6 @@ setlocal spell!
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
-" Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
-
 """"""""""""""""""""""""""""""""""""""""
 " Code Folding
 """"""""""""""""""""""""""""""""""""""""
@@ -158,16 +150,15 @@ set foldenable
 set foldmethod=syntax
 
 "when oping a file fold starting at first depth 
-set foldlevelstart=1
+"set foldlevelstart=1
 
 "only fold 2 deep
-set foldnestmax=2
+"set foldnestmax=2
 """"""""""""""""""""""""""""""""""""""""
 " added motions and maping
 """"""""""""""""""""""""""""""""""""""""
 inoremap  jk <esc>
 
-noremap yy Y
 """"""""""""""""""""""""""""""""""""""""
 " custom abbrivation
 """"""""""""""""""""""""""""""""""""""""
@@ -189,6 +180,12 @@ let g:notes_shadowdir   =  '~/Documents/shadow_dir'
 """"""""""""""""""""""""""""""""""""""""
 " Easy motion
 """"""""""""""""""""""""""""""""""""""""
+"  ____  _____ __  __  _____     _______ ____  
+" |  _ \| ____|  \/  |/ _ \ \   / / ____|  _ \ 
+" | |_) |  _| | |\/| | | | \ \ / /|  _| | | | |
+" |  _ <| |___| |  | | |_| |\ V / | |___| |_| |
+" |_| \_\_____|_|  |_|\___/  \_/  |_____|____/ 
+"                                              
 
 """"""""""""""""""""""""""""""""""""""""
 " Airline
@@ -208,35 +205,37 @@ map Y y$
 """"""""""""""""""""""""""""""""""""""""
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 
-"use javascript higliting for javascript 
-autocmd BufNewFile,BufRead *.json set ft=javascript
+""""""""""""""""""""""""""""""""""""""""
+" Turbux
+""""""""""""""""""""""""""""""""""""""""
+let g:turbux_command_rspec = 'rspec --require /home/dcfedde/Downloads/vim_formatter.rb --format VimFormatter --out rspec.quickfix --format Fuubar --color' " default: rspec"
+
+let g:no_turbux_mappings = 1
+map <leader>T <Plug>SendTestToTmux
+map <leader>t <Plug>SendFocusedTestToTmux
+
 "adds the remove function
 command! -complete=file -nargs=1 Remove :echo 'Remove: '.'<f-args>'.' '.(delete(<f-args>) == 0 ? 'SUCCEEDED' : 'FAILED')
 
-filetype plugin indent on     " required!
-
 "so that tab guids look better
 let g:indent_guides_auto_colors = 0
+
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=darkgrey
 autocmd VimEnter,Colorscheme * :let indent_guides_start_level=2
 autocmd VimEnter,Colorscheme * :let indent_guides_guide_size=1
 
-"make sure ti higlite all them stupid whitespace chars
+"make sure to highlight all them stupid whitespace chars
 autocmd InsertEnter * syn clear EOLWS | syn match EOLWS excludenl /\s\+\%#\@!$/
 autocmd InsertLeave * syn clear EOLWS | syn match EOLWS excludenl /\s\+$/
 highlight EOLWS ctermbg=red guibg=red
-"for rspec
-let g:rspec_command = 'call Send_to_Tmux("clear; time zeus test {spec}\n")'
+
+" "for rspec
+" let g:rspec_command = 'call Send_to_Tmux("clear; time zeus test {spec}\n")'
 " vim-rspec mappings
 " map <Leader>t :call RunCurrentSpecFile()<CR>
 " map <Leader>s :call RunNearestSpec()<CR>
 " map <Leader>l :call RunLastSpec()<CR>
 " map <Leader>a :call RunAllSpecs()<CR>
 
-function! Reload_firefox()
-  write
-  silent !echo  'reload' | nc -w 1 192.168.0.36 32000 2>&1 > /dev/null
-  redraw!
-endfunction
 
