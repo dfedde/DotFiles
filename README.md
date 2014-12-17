@@ -1,4 +1,4 @@
 DotFiles
 ========
 
-my dot files man test3
+my dot files man
