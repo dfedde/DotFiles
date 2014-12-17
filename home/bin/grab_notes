@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+# Duncan Fedde
+#
+
+def get_notes file_name
+  donen = []
+  File.foreach(file_name) do |line|
+    if line =~ /DONE/ .. line =~ /NOTES/
+      donen << line
+    end
+  end
+  donen[1..-2]
+end
+
+
+puts get_notes ARGV[0]

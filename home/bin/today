@@ -1,0 +1,5 @@
+#!/bin/bash
+# This is a hack since I cant use %a in the zsh
+# Duncan Fedde
+
+date +"%A %B %d %Y"

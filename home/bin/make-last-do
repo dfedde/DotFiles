@@ -1,0 +1,25 @@
+#! /usr/bin/env ruby
+
+#######################################
+# add the previous command to alias file
+# alias file
+#######################################
+
+history = "~/.zsh_history"
+output = "~/.zsh/aliases.zsh"
+
+last = `cat #{history} | tail -2`
+
+last = last.split("\n").first
+last =  /^.*;(.*)$/.match(last)[1]
+last = last.gsub(/\s+/, "-")
+
+line = "alias #{last}='#{ARGV[0]}'"
+
+puts "add:        "
+puts " #{line}    "
+puts "to #{output}"
+
+`echo "#{line}" >> #{output}`
+
+`exec zsh`
