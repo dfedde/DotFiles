@@ -6,8 +6,11 @@ repo_dir="$HOME/DotFiles"
 
 cd $repo_dir
 
-git add -A
-git commit -m "$git_message"
+git commit -a -m "$git_message"
+if ! $?; then
+  curl -s -F "token=$token" -F "user=$user" -F "message=$(hostname) failed to commit files" https://api.pushover.net/1/messages 
+  exit 1
+fi
 
 git pull --rebase
 if ! $?; then
