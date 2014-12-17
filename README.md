@@ -1,4 +1,4 @@
 DotFiles
 ========
 
-my dot files test
+my dot files
