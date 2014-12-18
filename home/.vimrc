@@ -214,6 +214,10 @@ let g:no_turbux_mappings = 1
 map <leader>T <Plug>SendTestToTmux
 map <leader>t <Plug>SendFocusedTestToTmux
 
+map <leader>T :cg rspec.quickfix
+map <leader>t :cg rspec.quickfix
+
+
 "adds the remove function
 command! -complete=file -nargs=1 Remove :echo 'Remove: '.'<f-args>'.' '.(delete(<f-args>) == 0 ? 'SUCCEEDED' : 'FAILED')
 
