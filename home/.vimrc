@@ -213,11 +213,12 @@ let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:turbux_command_rspec = 'rspec --require /home/dcfedde/Downloads/vim_formatter.rb --format VimFormatter --out rspec.quickfix --format Fuubar --color' " default: rspec"
 
 let g:no_turbux_mappings = 1
-map <leader>T :cg rspec.quickfix <cr>
-map <leader>t :cg rspec.quickfix <cr>
 
 map <leader>T <Plug>SendTestToTmux
 map <leader>t <Plug>SendFocusedTestToTmux
+
+" map <leader>T :cg rspec.quickfix <cr>
+" map <leader>t :cg rspec.quickfix <cr>
 
 
 
