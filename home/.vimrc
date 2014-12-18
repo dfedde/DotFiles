@@ -137,7 +137,7 @@ set si "Smart indent
 """""""""""""""""""""""""""""""""""""""""""
 
 " spell checking is on by default
-setlocal spell!
+setlocal spell! spelllang=en_us
 
 " Pressing ,ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
@@ -155,9 +155,11 @@ set foldmethod=syntax
 "only fold 2 deep
 "set foldnestmax=2
 """"""""""""""""""""""""""""""""""""""""
-" added motions and maping
+" added motions and mapping
 """"""""""""""""""""""""""""""""""""""""
 inoremap  jk <esc>
+"open the relative file in a new tab ### this may be be cool tho have as a scritp that could find the one if its open
+noremap  <leader>A :tabe<cr><c-o>:A<cr> 
 
 """"""""""""""""""""""""""""""""""""""""
 " custom abbrivation
@@ -211,11 +213,12 @@ let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:turbux_command_rspec = 'rspec --require /home/dcfedde/Downloads/vim_formatter.rb --format VimFormatter --out rspec.quickfix --format Fuubar --color' " default: rspec"
 
 let g:no_turbux_mappings = 1
+map <leader>T :cg rspec.quickfix <cr>
+map <leader>t :cg rspec.quickfix <cr>
+
 map <leader>T <Plug>SendTestToTmux
 map <leader>t <Plug>SendFocusedTestToTmux
 
-map <leader>T :cg rspec.quickfix
-map <leader>t :cg rspec.quickfix
 
 
 "adds the remove function
