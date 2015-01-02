@@ -42,8 +42,6 @@ Plugin 'dfedde/vim-arpeggio'
 Plugin 'noprompt/vim-yardoc'
 
 
-Plugin 'xolox/vim-notes'
-Plugin 'xolox/vim-misc'
 "add a bunch more snipits for
 Plugin 'scrooloose/snipmate-snippets'
 
@@ -163,18 +161,15 @@ set foldmethod=syntax
 " added motions and mapping
 """"""""""""""""""""""""""""""""""""""""
 inoremap  jk <esc>
-<<<<<<< HEAD
 inoremap <C-[> <esc>
 
 noremap yy Y
 
 " run this file 
 noremap <leader>r :w<CR>:!%<CR>
-=======
 "open the relative file in a new tab ### this may be be cool tho have as a scritp that could find the one if its open
 noremap  <leader>A :tabe<cr><c-o>:A<cr> 
 
->>>>>>> db2dc70aab671e396de2c2258fed21ffe3fec871
 """"""""""""""""""""""""""""""""""""""""
 " custom abbrivation
 """"""""""""""""""""""""""""""""""""""""
