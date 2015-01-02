@@ -1,0 +1,29 @@
+#!/bin/env ruby
+#Duncan Fedde
+
+require 'date'
+require 'fileutils'
+
+user       = "dcfedde"
+home_dir   = "/home/#{user}"
+notes      = "#{home_dir}/Documents/Notes"
+shadow     = "#{home_dir}/.vim/bundle/vim-notes/misc/notes/shadow/New\ note"
+note_regex = /\w+ \w+ \d{2} \d{4}/
+
+Dir.chdir notes
+
+m = Dir["*"].select{ |v| v =~ note_regex }.max_by do  |a|
+  Date.strptime(a, "%A %B %d %Y")
+end
+
+puts "making #{ m } the new shadow file"
+FileUtils.cp(m, shadow)
+
+puts "cleaning the shadow file"
+lines = File.new(shadow).readlines
+lines[0] = "New note"
+((lines.index("DONE:")+1)..(lines.index("NOTES:")-1)).each do |ln|
+  lines.delete_at ln
+end
+ puts lines
+

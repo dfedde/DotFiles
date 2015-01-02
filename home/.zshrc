@@ -16,3 +16,5 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 eval "$(rbenv init -)"
 export JAVA_HOME=/usr/lib/jvm/java-7-oracle/
+
+DISABLE_AUTO_TITLE="true"

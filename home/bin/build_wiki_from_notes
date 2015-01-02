@@ -1,0 +1,37 @@
+#!/bin/env ruby
+
+ignore = %w( . .. .git )
+output = "test/"
+notes = []
+note_path = "../Documents/Notes"
+
+Dir.foreach(note_path){|x| notes << x}
+
+`git clone git@ENG-V43:dcfedde/duncans-notes.wiki.git #{output}`
+`find #{output} -maxdepth 1 -type f -exec rm -f {} \\;`
+
+notes.each do |entry|
+  next if ignore.include? entry
+
+  output_file_name = "#{output}#{entry.tr(" ", "-").gsub("%5c", "")}.md"
+  file_name        = "#{note_path}/#{entry}"
+
+  puts "rename  #{file_name} to #{output_file_name}"
+  File.open(output_file_name, "w") do |out|
+    File.open(file_name, "r") do |input|
+      while not input.eof?
+        line = input.gets
+        notes.each do |name|
+          line = line.gsub(name, "[#{name}][]")
+        end
+        puts line
+        output << line
+      end
+    end
+  end
+
+end
+Dir.chdir output
+`git add -A`
+`git commit -m "auto update"`
+`git push origin master`

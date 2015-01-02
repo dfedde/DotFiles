@@ -1,7 +1,9 @@
 # add in zsh-completions
 fpath=(/opt/boxen/homebrew/share/zsh-completions $fpath)
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
 
-autoload -U compinit && compinit                                                                                       
+autoload -U compinit && compinit
 zmodload -i zsh/complist
 
 # man zshcontrib

@@ -1,0 +1,17 @@
+#!/bin/env ruby
+# Duncan Fedde
+#
+#
+
+require 'date'
+
+notes_dir = "/home/dcfedde/Documents/Notes"
+daily_regex = /[A-Z]\w+\s+[A-Z]\w+\s+\d\d\s+\d\d\d\d/
+
+files = Dir.entries(notes_dir)
+
+files = files.select {|s| s =~ daily_regex}
+
+files = files.map {|s| Date.strptime(s, "%A %B %d %Y")}
+
+p files

@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+# Duncan Fedde
+#
+# This pulls apart my notes and presents me with a number of hours I worked
+# It will only work for a consistent timezone and inside of a day
+
+def time_to_int time
+  ts = time.split ?:
+  t = 0
+  t += ts[0].to_i
+  t += (ts[1].to_i/60.0).to_r
+end
+
+def sum_time times
+  times.inject(0) do |m, entry|
+    case entry[0]
+    when "in"
+      next (m - time_to_int(entry[1]))
+    when "out"
+      next m + time_to_int(entry[1])
+    else
+      raise "not a valid time"
+    end
+  end
+end
+
+def round_to_quarter num
+  (num * 4).round / 4.0
+end
+
+times = []
+
+File.open(ARGV[0], "r").each_line do |line|
+  if line =~ /⌚/
+    times << line.match(/⌚\s+(\w+)\s+(\d+:\d+)/)[1,2] #grab all collects but no matches
+  end
+end
+
+puts round_to_quarter(sum_time(times).to_f)
