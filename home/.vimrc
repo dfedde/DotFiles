@@ -29,8 +29,12 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'thoughtbot/vim-rspec'
 
+Plugin 'tpope/vim-repeat'
 
 
+
+Plugin 'xolox/vim-notes'
+Plugin 'xolox/vim-misc'
 "add a bunch more snipits for
 Plugin 'scrooloose/snipmate-snippets'
 "allow send command to tmux
@@ -139,9 +143,12 @@ set foldnestmax=2
 " added motions and maping
 """"""""""""""""""""""""""""""""""""""""
 inoremap  jk <esc>
-inoremap  <esc> <nop>
+inoremap <C-[> <esc>
 
 noremap yy Y
+
+" run this file 
+noremap <leader>r :w<CR>:!%<CR>
 """"""""""""""""""""""""""""""""""""""""
 " custom abbrivation
 """"""""""""""""""""""""""""""""""""""""
