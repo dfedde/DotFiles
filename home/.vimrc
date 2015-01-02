@@ -25,6 +25,8 @@ Plugin 'kana/vim-textobj-user'
 Plugin 'godlygeek/tabular'
 Plugin 'thoughtbot/vim-rspec'
 
+Plugin 'tpope/vim-repeat'
+
 "to work better with tmux
 Plugin 'sjl/vitality.vim'
 
@@ -38,6 +40,7 @@ Plugin 'bling/vim-airline'
 Plugin 'dfedde/vim-arpeggio'
 
 Plugin 'noprompt/vim-yardoc'
+
 
 "add a bunch more snipits for
 Plugin 'scrooloose/snipmate-snippets'
@@ -161,6 +164,13 @@ set foldmethod=syntax
 """"""""""""""""""""""""""""""""""""""""
 inoremap  jk <esc>
 xnoremap  jk <esc>
+inoremap <C-[> <esc>
+
+noremap yy Y
+
+" execute this file 
+noremap <leader>e :w<CR>:!%<CR>
+
 "open the relative file in a new tab ### this may be be cool tho have as a scritp that could find the one if its open
 noremap  <leader>A :tabe<cr><c-o>:A<cr> 
 
