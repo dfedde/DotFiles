@@ -61,6 +61,8 @@ Plugin 'tpope/vim-haml'
 Plugin 'christoomey/vim-tmux-navigator'
 
 Plugin 'tpope/vim-unimpaired'
+"exicure ruby in a file
+Plugin 't9md/vim-ruby-xmpfilter'
 
 "themes
 Plugin 'altercation/vim-colors-solarized.git'
@@ -158,6 +160,7 @@ set foldmethod=syntax
 " added motions and mapping
 """"""""""""""""""""""""""""""""""""""""
 inoremap  jk <esc>
+xnoremap  jk <esc>
 "open the relative file in a new tab ### this may be be cool tho have as a scritp that could find the one if its open
 noremap  <leader>A :tabe<cr><c-o>:A<cr> 
 
@@ -220,6 +223,28 @@ map <leader>t <Plug>SendFocusedTestToTmux
 " map <leader>T :cg rspec.quickfix <cr>
 " map <leader>t :cg rspec.quickfix <cr>
 
+""""""""""""""""""""""""""""""""""""""""
+" xmpfilter
+""""""""""""""""""""""""""""""""""""""""
+let g:xmpfilter_cmd = "seeing_is_believing"
+
+autocmd FileType ruby nmap <buffer> <leader>m <Plug>(seeing_is_believing-mark)
+autocmd FileType ruby xmap <buffer> <leader>m <Plug>(seeing_is_believing-mark)
+autocmd FileType ruby imap <buffer> <leader>m <Plug>(seeing_is_believing-mark)
+
+autocmd FileType ruby nmap <buffer> <leader>c <Plug>(seeing_is_believing-clean)
+autocmd FileType ruby xmap <buffer> <leader>c <Plug>(seeing_is_believing-clean)
+autocmd FileType ruby imap <buffer> <leader>c <Plug>(seeing_is_believing-clean)
+
+" xmpfilter compatible
+autocmd FileType ruby nmap <buffer> <leader>r <Plug>(seeing_is_believing-run_-x)
+autocmd FileType ruby xmap <buffer> <leader>r <Plug>(seeing_is_believing-run_-x)
+autocmd FileType ruby imap <buffer> <leader>r <Plug>(seeing_is_believing-run_-x)
+
+" auto insert mark at appropriate spot.
+autocmd FileType ruby nmap <buffer> <leader>R <Plug>(seeing_is_believing-run)
+autocmd FileType ruby xmap <buffer> <leader>R <Plug>(seeing_is_believing-run)
+autocmd FileType ruby imap <buffer> <leader>R <Plug>(seeing_is_believing-run)
 
 
 "adds the remove function

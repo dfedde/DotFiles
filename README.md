@@ -1,4 +1,18 @@
 DotFiles
 ========
 
-my dot files man
+My dot files
+
+Requirements
+============
+- rcodetools
+ - fastri
+- ruby
+- node
+- ack
+
+configs for
+===========
+- tmux
+- vim
+
