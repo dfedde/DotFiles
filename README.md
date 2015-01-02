@@ -5,8 +5,7 @@ My dot files
 
 Requirements
 ============
-- rcodetools
- - fastri
+- seeing is believing
 - ruby
 - node
 - ack
