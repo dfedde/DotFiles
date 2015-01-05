@@ -163,7 +163,8 @@ set foldmethod=syntax
 " added motions and mapping
 """"""""""""""""""""""""""""""""""""""""
 inoremap  jk <esc>
-xnoremap  jk <esc>
+" this dose not work as you cant move up and down
+" xnoremap  jk <esc>
 inoremap <C-[> <esc>
 
 noremap yy Y
