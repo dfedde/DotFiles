@@ -6,7 +6,7 @@
 
 require_relative 'lib/notes_functions'
 
-note = Note.new ARGV[0]
+note = Note.new file: ARGV[0]
 
 puts note.time_worked
 
