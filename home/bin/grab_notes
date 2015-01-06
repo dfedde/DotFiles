@@ -2,15 +2,8 @@
 # Duncan Fedde
 #
 
-def get_notes file_name
-  donen = []
-  File.foreach(file_name) do |line|
-    if line =~ /DONE/ .. line =~ /NOTES/
-      donen << line
-    end
-  end
-  donen[1..-2]
-end
+require_relative 'lib/notes_functions'
 
+note = Note.new ARGV[0]
 
-puts get_notes ARGV[0]
+puts note.compleated_tasks
