@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+# this gets all the notes for each day of the week
+
+require_relative 'lib/notes_functions'
+
+def find_saterday_before day
+  day.wday == 6 ? day : find_saterday_before(day -= 1)
+end
+
+def week_of day
+  saterday = find_saterday_before day
+  (saterday .. saterday + 6).to_a
+end
+
+class Fixnum
+  def days_ago
+    Date.today - self
+  end
+end
+
+(Note.for week_of(6.days_ago)).each do |note|
+  puts
+  puts
+  puts note.date.strftime("%A %B %e %Y") + ?:
+  puts "    #{note.time_worked}"
+  note.compleated_tasks.each{|t| puts "   #{t}"}
+end

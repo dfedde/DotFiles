@@ -1,0 +1,96 @@
+#!/usr/bin/env ruby
+# this gets all the notes for each day of the week
+
+require 'net/http'
+require_relative 'lib/notes_functions'
+
+note = Note.new(date: Date.today)
+
+
+@user = 'dcf'
+@pass = 'dcf'
+@host = 'eng-V10'
+@port = '80'
+
+@post_ws = "/jtcgi/jxapi_wsi.pyc"
+
+
+@login_body = <<-body
+<?xml version="1.0" encoding="UTF-8"?>
+<env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="urn:jxapi" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+  <env:Body>
+    <tns:login>
+      <username>#{@user}</username>
+      <pwd>#{@pass}</pwd>
+    </tns:login>
+  </env:Body>
+</env:Envelope>
+body
+
+def skey
+  unless @skey
+    req = Net::HTTP::Post.new(@post_ws, {'Content-Type' =>'application/json'})
+    req.body = @login_body
+    response = Net::HTTP.new(@host, @port).start {|http| http.request(req) }
+    @skey = response.body.match(/<loginResult>(.+)<\/loginResult>/).captures.last
+  end
+  @skey
+end
+
+@whoami_body = <<-body
+<?xml version="1.0" encoding="UTF-8"?>
+<env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="urn:jxapi" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+  <env:Body>
+    <tns:whoami>
+      <skey>#{skey}</skey>
+    </tns:whoami>
+  </env:Body>
+</env:Envelope>
+body
+
+def user_id
+  unless @user_id
+    req = Net::HTTP::Post.new(@post_ws, {'Content-Type' =>'application/json'})
+    req.body = @whoami_body
+    response = Net::HTTP.new(@host, @port).start {|http| http.request(req) }
+    @user_id = response.body.match(/<whoamiResult>(.+)<\/whoamiResult>/).captures.last
+  end
+  @user_id
+end
+
+@addrecord_body =  <<-body
+<?xml version="1.0" encoding="UTF-8"?>
+<env:Envelope xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tns="urn:jxapi" xmlns:env="http://schemas.xmlsoap.org/soap/envelope/">
+<env:Body>
+  <tns:addFullTimeRecord>
+    <skey>#{skey}</skey>
+      <TimeRecord xsi:type="t:TimeRecord">
+        <user>#{user_id}</user>
+        <date>#{note.date.strftime("%Y%m%d")}</date>
+        <code>6B5FD0C3B1A5487D8BABBB02FB9525F5</code>
+        <subcode>Regular</subcode>
+        <project>F6B2B5B125684A958DACC4B77D798683</project>
+        <hours>#{note.time_worked}</hours>
+        <comment>default</comment>
+        <committed>false</committed>
+        <domain>install_root_dom</domain>
+        <subsubcode>Standard</subsubcode>
+        <group>All_grp</group>
+      </TimeRecord>
+    </tns:addFullTimeRecord>
+  </env:Body>
+</env:Envelope>
+body
+
+
+def add_record
+    req = Net::HTTP::Post.new(@post_ws, {'Content-Type' =>'application/json'})
+    req.body = @addrecord_body
+    response = Net::HTTP.new(@host, @port).start {|http| http.request(req) }
+    response.body
+end
+
+
+
+thepost = add_record
+puts thepost

@@ -1,0 +1,8 @@
+#!/bin/bash
+# this script merges my activities for the day into one output
+# this includes the time I snippet working and the tasks I completed
+
+echo '****  TIME  ****'
+grab_time "$1"
+echo '****  NOTES ****'
+grab_notes "$1"
