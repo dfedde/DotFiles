@@ -3,6 +3,8 @@
 
 require_relative 'lib/notes_functions'
 
+ arg = ARGV.shift.to_i
+
 def find_saterday_before day
   day.wday == 6 ? day : find_saterday_before(day -= 1)
 end
@@ -16,12 +18,20 @@ class Fixnum
   def days_ago
     Date.today - self
   end
+
+  def weeks_ago
+    Date.today - self * 7
+  end
 end
 
-(Note.for week_of(6.days_ago)).each do |note|
+total_time = 0
+(Note.for week_of(arg.weeks_ago)).each do |note|
   puts
   puts
   puts note.date.strftime("%A %B %e %Y") + ?:
   puts "    #{note.time_worked}"
   note.compleated_tasks.each{|t| puts "   #{t}"}
+  total_time += note.time_worked if note.time_worked and note.time_worked > 0
 end
+
+puts total_time
