@@ -1,6 +1,6 @@
 #!/bin/bash
 
-time=(5*60)
+time=$(( 5 * 60 ))
 
 clear
 while [ $time -gt 0 ]; do
@@ -10,4 +10,5 @@ while [ $time -gt 0 ]; do
   sleep 1
 done
 
-tmux detach;
+alert "Break Over, get back to work"
+thepath
