@@ -25,7 +25,7 @@ class Note
   def compleated_tasks
     return [] unless @file.exist?
     File.readlines(@file).map do |line|
-      if line =~ /DONE/ .. line =~ /NOTES/
+      if line =~ /DONE:/ .. line =~ /NOTES:/
         line unless line =~ /(DONE|NOTES)/
       end
     end.compact
