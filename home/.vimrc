@@ -115,6 +115,7 @@ set autowriteall
 :au FocusLost * silent! wa
 
 " persistent-undo
+"
 set undodir=~/.vim/undo
 
 """"""""""""""""""""""""""""""""""""""""""
