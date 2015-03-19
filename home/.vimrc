@@ -63,6 +63,8 @@ Plugin 'tpope/vim-haml'
 
 Plugin 'christoomey/vim-tmux-navigator'
 
+Plugin 'tpope/vim-vinegar'
+
 Plugin 'tpope/vim-unimpaired'
 "exicure ruby in a file
 Plugin 't9md/vim-ruby-xmpfilter'
