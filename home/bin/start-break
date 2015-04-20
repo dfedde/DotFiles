@@ -1,0 +1,14 @@
+#!/bin/bash
+
+time=$(( 5 * 60 ))
+
+clear
+while [ $time -gt 0 ]; do
+  clear
+  echo $(($time/60)) minutes $(($time%60)) seconds remaining
+  time=`expr $time - 1`
+  sleep 1
+done
+
+alert "Break Over, get back to work"
+thepath
