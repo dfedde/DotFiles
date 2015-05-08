@@ -25,6 +25,7 @@ Plugin 'kana/vim-textobj-user'
 Plugin 'godlygeek/tabular'
 Plugin 'thoughtbot/vim-rspec'
 
+Plugin 'shime/vim-livedown' " you must run `npm install -g livedown` for this to work
 Plugin 'tpope/vim-repeat'
 
 "to work better with tmux
