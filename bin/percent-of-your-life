@@ -1,0 +1,9 @@
+#!/bin/bash
+
+birth_date=729306000
+date_now="$(date +%s)"
+event_time=$1
+life_length=$(( ${date_now} - ${birth_date} ))
+
+
+printf "That took %f%% of your life so far" "$(echo "(${event_time} / ${life_length}) * 100" | bc -l)"

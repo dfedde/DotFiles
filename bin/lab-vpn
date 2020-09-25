@@ -1,0 +1,16 @@
+#!/bin/bash
+session_name=lab-vpn
+
+tmux kill-session -t $session_name
+
+eval "$(op signin)"
+item_id="$(op list items | jq ".[] | select(.overview.title==\"Dell - Customer Solution Center\") | .uuid" -r )"
+password=$(op get item "$item_id" | jq '.details.fields[] | select(.designation == "password").value' -r)
+
+tmux new -s $session_name "
+echo \"$password\" | sudo openconnect \
+   --juniper \
+    https://dsc.us.dell.com/engage \
+   -u amer/duncan_fedde \
+   --passwd-on-stdin || bash
+"

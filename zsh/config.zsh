@@ -83,3 +83,16 @@ if test -d /usr/local/opt/fzf/shell; then
 else
 	bindkey '^R' history-incremental-search-backward
 fi
+
+
+# to set up openal-soft
+export LDFLAGS="-L/usr/local/opt/openal-soft/lib"
+export CPPFLAGS="-I/usr/local/opt/openal-soft/include"
+export PKG_CONFIG_PATH="/usr/local/opt/openal-soft/lib/pkgconfig"
+
+# make love a command line tool
+alias love="/Applications/love.app/Contents/MacOS/love"
+export LOVE="/Applications/love.app/Contents/MacOS/love"
+
+# make aseprite usable by make
+export ASEPRITE="/Users/dfedde/Library/Application\ Support/Steam/steamapps/common/Aseprite/Aseprite.app/Contents/MacOS/aseprite"

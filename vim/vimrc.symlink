@@ -1,54 +1,60 @@
-set nocompatible
-filetype off
+""""""""""""""""""""""""""""""""""""""""""
+" Vundle
+""""""""""""""""""""""""""""""""""""""""""
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+filetype off                  " required
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-let mapleader='\'
 
-" let Vundle manage Vundle
-" required!
-Plugin 'gmarik/Vundle.vim'
+" Add or remove your plugins here like this:
+Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-surround'
-Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'tomtom/tcomment_vim'
+Plugin 'xolox/vim-notes'
+Plugin 'xolox/vim-misc'
+" for spaces
+Plugin 'tpope/vim-vinegar'
 
 "to work better with tmux
 Plugin 'sjl/vitality.vim'
 
-"Use tab for text compleation
-Plugin 'ervandew/supertab'
 
 "better status bar (also tabs)
 Plugin 'bling/vim-airline'
 
-" allows keycords for vim hotkeys
-Plugin 'dfedde/vim-arpeggio'
+" for terraform 
+Plugin 'hashivim/vim-terraform'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'juliosueiras/vim-terraform-completion'
 
-"allow send command to tmux
-Plugin 'jgdavey/tslime.vim'
+" for bats highlighting
+Plugin 'vim-scripts/bats.vim'
 
-"For vim note taking
-Plugin 'xolox/vim-notes'
-Plugin 'xolox/vim-misc'
+" for love2d
+Plugin 'davisdude/vim-love-docs'
 
-Plugin 'mileszs/ack.vim'
+" Required:
+call vundle#end()
+filetype plugin indent on
 
-Plugin 'tpope/vim-vinegar'
-
-"themes
-Plugin 'altercation/vim-colors-solarized.git'
-
-" All of your Plugins must be added before the following line
- call vundle#end()            " require
- filetype plugin indent on    " required
-
-"set theme
+" If you want to install not installed plugins on startup.
+""""""""""""""""""""""""""""""""""""""""""
+" theme
+""""""""""""""""""""""""""""""""""""""""""
 syntax enable
 set background=dark
 "let g:solarized_termcolors=256
 
 
+""""""""""""""""""""""""""""""""""""""""""
+" set basic  stettings
+""""""""""""""""""""""""""""""""""""""""""
 set nohidden
 set smartcase
 set backspace=indent,eol,start
@@ -100,7 +106,7 @@ set tabstop=2
 
 " Linebreak on 500 characters
 set lbr
-set tw=500
+set tw=100
 
 set ai "Auto indent
 set si "Smart indent
@@ -145,11 +151,16 @@ let g:notes_shadowdir   =  '~/Documents/shadow_dir'
 " Airline
 """"""""""""""""""""""""""""""""""""""""
 let g:airline_detect_whitespace = 0
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts = 0
 
 """"""""""""""""""""""""""""""""""""""""
 " clipboard
 """"""""""""""""""""""""""""""""""""""""
-set clipboard=unnamedplus
-
 map Y y$
+
+
+""""""""""""""""""""""""""""""""""""""""
+" golang
+""""""""""""""""""""""""""""""""""""""""
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'

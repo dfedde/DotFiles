@@ -1,0 +1,46 @@
+#!/bin/bash
+
+print_usage(){
+ echo "usage: fmj [-c <category>]"
+ echo 
+ echo "-c spesify the category to search in"
+}
+
+while getopts ":c:h" option
+do
+  case "$option" in
+    c)   
+      category="${OPTARG}";;
+    h)   
+      print_usage
+      exit 0
+      ;;
+    *)   
+      echo -e "could not parse arguments"
+      print_usage
+      exit 1 
+      ;;
+  esac
+done
+
+url="https://remotive.io/api/remote-jobs"
+
+if [ -z $category ]; then
+  url="$url?category=$category"
+fi 
+
+job_list="$(curl -s "https://remotive.io/api/remote-jobs")"
+
+jobs_count="$(echo $job_list | jq '."job-count"')"
+
+job="$(echo $job_list | jq ".jobs[$((1 + RANDOM % $jobs_count))]")"
+
+echo "You could be a:"
+
+figlet "$(echo $job | jq -r '.["title"]')"
+
+echo "at:"
+
+figlet "$(echo $job | jq -r '.["company_name"]')"
+
+echo "$(echo $job | jq -r '.["url"]')"
